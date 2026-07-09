@@ -1,0 +1,379 @@
+@import "tailwindcss";
+
+:root {
+  --background: #f5f6f8;
+  --foreground: #1b2233;
+
+  --paper: #f5f6f8;
+  --surface: #ffffff;
+  --surface-2: #eef0f4;
+  --ink: #1b2233;
+  --ink-soft: #47506a;
+  --ink-faint: #7c859c;
+  --line: #e1e4ec;
+  --line-soft: #ecefF3;
+
+  --accent: #3b5bdb;
+  --accent-ink: #2a44ab;
+  --accent-wash: #eaeefc;
+
+  --time: #c77714;
+  --time-wash: #fbf0df;
+  --go: #2f9e6e;
+  --go-wash: #e4f3ec;
+  --future: #6c5ce0;
+  --future-wash: #eeebfb;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+
+  --color-paper: var(--paper);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
+  --color-ink-faint: var(--ink-faint);
+  --color-line: var(--line);
+  --color-line-soft: var(--line-soft);
+
+  --color-accent: var(--accent);
+  --color-accent-ink: var(--accent-ink);
+  --color-accent-wash: var(--accent-wash);
+
+  --color-time: var(--time);
+  --color-time-wash: var(--time-wash);
+  --color-go: var(--go);
+  --color-go-wash: var(--go-wash);
+  --color-future: var(--future);
+  --color-future-wash: var(--future-wash);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #12151c;
+    --foreground: #edeff4;
+
+    --paper: #12151c;
+    --surface: #191d26;
+    --surface-2: #212734;
+    --ink: #edeff4;
+    --ink-soft: #b4bcce;
+    --ink-faint: #7e879c;
+    --line: #2a3140;
+    --line-soft: #232935;
+
+    --accent: #7c93f0;
+    --accent-ink: #a9b8f7;
+    --accent-wash: #1e2740;
+
+    --time: #e0a253;
+    --time-wash: #322616;
+    --go: #58c093;
+    --go-wash: #16281f;
+    --future: #a99bf0;
+    --future-wash: #231e3b;
+  }
+}
+
+/* Kullanıcının elle seçtiği tema — [data-theme] öznitelik seçicisi hem
+   düz :root hem de OS temelli @media :root kuralından daha spesifik
+   olduğu için, seçildiğinde işletim sistemi ayarını geçersiz kılar. */
+:root[data-theme="light"] {
+  --background: #f5f6f8;
+  --foreground: #1b2233;
+
+  --paper: #f5f6f8;
+  --surface: #ffffff;
+  --surface-2: #eef0f4;
+  --ink: #1b2233;
+  --ink-soft: #47506a;
+  --ink-faint: #7c859c;
+  --line: #e1e4ec;
+  --line-soft: #ecefF3;
+
+  --accent: #3b5bdb;
+  --accent-ink: #2a44ab;
+  --accent-wash: #eaeefc;
+
+  --time: #c77714;
+  --time-wash: #fbf0df;
+  --go: #2f9e6e;
+  --go-wash: #e4f3ec;
+  --future: #6c5ce0;
+  --future-wash: #eeebfb;
+}
+
+:root[data-theme="dark"] {
+  --background: #12151c;
+  --foreground: #edeff4;
+
+  --paper: #12151c;
+  --surface: #191d26;
+  --surface-2: #212734;
+  --ink: #edeff4;
+  --ink-soft: #b4bcce;
+  --ink-faint: #7e879c;
+  --line: #2a3140;
+  --line-soft: #232935;
+
+  --accent: #7c93f0;
+  --accent-ink: #a9b8f7;
+  --accent-wash: #1e2740;
+
+  --time: #e0a253;
+  --time-wash: #322616;
+  --go: #58c093;
+  --go-wash: #16281f;
+  --future: #a99bf0;
+  --future-wash: #231e3b;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+}
+
+/* ── Glass Card ───────────────────────────────────────────── */
+.glass-card {
+  background: var(--surface);
+  border: 1px solid var(--line-soft);
+  border-radius: 1rem;
+  box-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.04),
+    0 4px 16px rgba(0, 0, 0, 0.03);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.glass-card:hover {
+  box-shadow:
+    0 2px 8px rgba(0, 0, 0, 0.06),
+    0 8px 32px rgba(0, 0, 0, 0.05);
+}
+
+/* ── Stat Number ──────────────────────────────────────────── */
+.stat-number {
+  background: linear-gradient(135deg, var(--accent) 0%, var(--future) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ── Badge ────────────────────────────────────────────────── */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.2rem 0.6rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  line-height: 1.4;
+  white-space: nowrap;
+}
+
+.badge-accent {
+  background: var(--accent-wash);
+  color: var(--accent-ink);
+}
+
+.badge-go {
+  background: var(--go-wash);
+  color: var(--go);
+}
+
+.badge-time {
+  background: var(--time-wash);
+  color: var(--time);
+}
+
+.badge-future {
+  background: var(--future-wash);
+  color: var(--future);
+}
+
+.badge-muted {
+  background: var(--surface-2);
+  color: var(--ink-faint);
+}
+
+/* ── Input Field ──────────────────────────────────────────── */
+.input-field {
+  display: block;
+  width: 100%;
+  padding: 0.6rem 0.85rem;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: var(--ink);
+  background: var(--surface-2);
+  border: 1px solid var(--line);
+  border-radius: 0.75rem;
+  outline: none;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.input-field::placeholder {
+  color: var(--ink-faint);
+}
+
+.input-field:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-wash);
+}
+
+/* ── Animations ───────────────────────────────────────────── */
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slide-up {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.4s ease-out both;
+}
+
+.animate-slide-up {
+  animation: slide-up 0.35s ease-out both;
+}
+
+/* ── Skeleton Loader ──────────────────────────────────────── */
+@keyframes shimmer {
+  0% { background-position: -400px 0; }
+  100% { background-position: 400px 0; }
+}
+
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    var(--surface-2) 25%,
+    var(--line-soft) 50%,
+    var(--surface-2) 75%
+  );
+  background-size: 800px 100%;
+  animation: shimmer 1.5s infinite linear;
+  border-radius: 0.5rem;
+}
+
+/* ─── Utility Classes ─── */
+
+.glass-card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 1rem;
+  box-shadow: 0 1px 3px rgba(0,0,0,.06);
+  transition: box-shadow .2s, border-color .2s, transform .2s;
+}
+.glass-card:hover {
+  box-shadow: 0 4px 16px rgba(0,0,0,.1);
+  border-color: var(--ink-faint);
+}
+
+.stat-number {
+  background: linear-gradient(135deg, var(--accent), var(--future));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  line-height: 1;
+}
+.badge-accent { background: var(--accent-wash); color: var(--accent-ink); }
+.badge-go { background: var(--go-wash); color: var(--go); }
+.badge-time { background: var(--time-wash); color: var(--time); }
+.badge-future { background: var(--future-wash); color: var(--future); }
+.badge-muted { background: var(--surface-2); color: var(--ink-faint); }
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-in {
+  animation: fadeIn .4s ease-out both;
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-slide-up {
+  animation: slideUp .5s ease-out both;
+}
+
+.input-field {
+  width: 100%;
+  border-radius: 0.5rem;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  padding: 0.625rem 0.875rem;
+  font-size: 0.875rem;
+  color: var(--ink);
+  outline: none;
+  transition: border-color .2s, box-shadow .2s;
+}
+.input-field:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-wash);
+}
+.input-field::placeholder {
+  color: var(--ink-faint);
+}
+
+/* Custom range input */
+input[type='range'] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 6px;
+  border-radius: 3px;
+  background: var(--surface-2);
+  outline: none;
+}
+input[type='range']::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--accent);
+  cursor: pointer;
+  border: 2px solid var(--surface);
+  box-shadow: 0 1px 4px rgba(0,0,0,.15);
+}
+input[type='range']::-moz-range-thumb {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--accent);
+  cursor: pointer;
+  border: 2px solid var(--surface);
+  box-shadow: 0 1px 4px rgba(0,0,0,.15);
+}
+
+/* Skeleton loading */
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+.skeleton {
+  background: linear-gradient(90deg, var(--surface-2) 25%, var(--surface) 50%, var(--surface-2) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: 0.5rem;
+}
